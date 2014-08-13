@@ -1,4 +1,4 @@
-package xtermcolors
+package xtermcolor
 
 // Xterm color codes vs. hex RGB; taken from https://gist.github.com/jasonm23/2868981
 // There are duplicates in the list, the first best match will be used

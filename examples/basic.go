@@ -1,14 +1,8 @@
-# XtermColors
-
-Find the closest xterm color to a 24 bit color.
-
-examples/basic.go:
-
-```go
 package main
 
 import (
 	"fmt"
+
 	"github.com/tomnomnom/xtermcolor"
 )
 
@@ -16,10 +10,3 @@ func main() {
 	fmt.Println(xtermcolor.FromInt(0xCC66FF))
 	fmt.Println(xtermcolor.FromRGB(120, 210, 120))
 }
-```
-
-```
-▶ go run examples/basic.go 
-171
-114
-```

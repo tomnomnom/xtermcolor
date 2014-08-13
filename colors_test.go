@@ -1,4 +1,4 @@
-package xtermcolors
+package xtermcolor
 
 import "testing"
 
