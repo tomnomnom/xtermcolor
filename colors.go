@@ -1,3 +1,5 @@
+// Package xtermcolor provides conversion from 24 bit colors in hex or RGB to
+// the closest 8 bit xterm/shell color code.
 package xtermcolor
 
 // Xterm color codes vs. hex RGB; taken from https://gist.github.com/jasonm23/2868981
@@ -274,13 +276,14 @@ func intToRGB(c int) (r int, g int, b int) {
 	return
 }
 
-// Find the closest xterm color to a given 24 bit color (e.g. 0xff00ff)
+// FromInt finds the closest xterm color to a given 24 bit color (e.g. 0xff00ff).
+// Where there are multiple colors with equal distance, the first one found will be returned.
 func FromInt(target int) int {
 	return FromRGB(intToRGB(target))
 }
 
-// Find the closest xterm colour to given R, G and B components (e.g. 255, 0, 255)
-// Where there are multiple colors with equal distance, the first one found will be returned
+// FromRGB finds the closest xterm colour to given R, G and B components (e.g. 255, 0, 255).
+// Where there are multiple colors with equal distance, the first one found will be returned.
 func FromRGB(tr, tg, tb int) int {
 	// Max possible distance between target and match
 	distance := 0xffffff
