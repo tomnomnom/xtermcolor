@@ -1,4 +1,4 @@
-# XtermColors
+# XtermColor
 
 Find the closest xterm color to a 24 bit color.
 
