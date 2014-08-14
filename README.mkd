@@ -2,6 +2,8 @@
 
 Find the closest xterm color to a 24 bit color.
 
+Note: *The API is not yet fixed*
+
 Full documentation can be found on [GoDoc](https://godoc.org/github.com/TomNomNom/xtermcolor).
 
 Basic usage (examples/basic.go):
@@ -25,6 +27,10 @@ func main() {
 171
 114
 ```
+
+## Todo
+
+Fix types to be compatible with Go's image/color package.
 
 [![Build Status](https://travis-ci.org/TomNomNom/xtermcolor.svg?branch=master)](https://travis-ci.org/TomNomNom/xtermcolor)
 
