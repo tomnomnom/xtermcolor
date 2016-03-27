@@ -1,0 +1,4 @@
+#!/bin/sh
+PROJDIR=$(cd `dirname $0`/.. && pwd)
+
+echo "Nothing to do :)"

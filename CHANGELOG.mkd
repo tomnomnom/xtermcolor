@@ -1,0 +1,7 @@
+# Changelog
+
+## [Unreleased]
+### Added
+- Conversion using map lookup
+- Conversion from discrete RGB integers
+- Conversion from single integer

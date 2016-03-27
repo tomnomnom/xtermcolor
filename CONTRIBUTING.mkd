@@ -1,0 +1,3 @@
+# Contributing
+
+Just fork, use [gofmt](https://golang.org/cmd/gofmt/), make sure the tests pass, and issue a pull request :)
