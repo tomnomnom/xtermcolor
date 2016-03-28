@@ -285,7 +285,7 @@ func intToRGBA(c uint32) color.RGBA {
 }
 
 // getDistance returns the distance between two colors ignoring the alpha channel
-func getDistance(a, b color.RGBA) int {
+func getDistance(a, b color.RGBA) uint32 {
 	dr := int(a.R - b.R)
 	dg := int(a.G - b.G)
 	db := int(a.B - b.B)
@@ -293,7 +293,7 @@ func getDistance(a, b color.RGBA) int {
 	// Total distance (pythag)
 	d := dr*dr + dg*dg + db*db
 
-	return d
+	return uint32(d)
 }
 
 // FromColor finds the closest xterm colour to a given color.Color
@@ -304,7 +304,7 @@ func FromColor(target color.Color) uint8 {
 	rgba := color.RGBA{uint8(r >> 8), uint8(g >> 8), uint8(b >> 8), uint8(a >> 8)}
 
 	// Max possible distance between target and match
-	distance := math.MaxUint32
+	distance := uint32(math.MaxUint32)
 	var match uint8
 
 	for xtermCode, candidate := range colors {
