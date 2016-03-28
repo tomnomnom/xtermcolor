@@ -5,10 +5,10 @@ Find the closest xterm color to anything implementing [color.Color](https://gola
 Provides a [color.Palette](https://golang.org/pkg/image/color/#Palette) as `xtermcolor.Colors` so you can use `.Convert` and `.Index`,
 but also provides convenience functions to get the index as a `uint8` from a `color.Color`, a 32 bit integer, or a 24 bit hex string.
 
-[![Build Status](https://travis-ci.org/TomNomNom/xtermcolor.svg?branch=master)](https://travis-ci.org/TomNomNom/xtermcolor)
+[![Build Status](https://travis-ci.org/tomnomnom/xtermcolor.svg?branch=master)](https://travis-ci.org/tomnomnom/xtermcolor)
 
 
-Full documentation can be found on [GoDoc](https://godoc.org/github.com/TomNomNom/xtermcolor).
+Full documentation can be found on [GoDoc](https://godoc.org/github.com/tomnomnom/xtermcolor).
 
 Basic usage (examples/basic.go):
 
