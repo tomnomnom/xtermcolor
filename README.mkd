@@ -53,6 +53,8 @@ There's also an `xtermcolor` command you can install by running:
 ▶ go get github.com/tomnomnom/xtermcolor/cmd/xtermcolor
 ```
 
+Or you can download a binary from the [releases page](https://github.com/tomnomnom/xtermcolor/releases).
+
 The command returns the color code for a 24 bit hex number:
 
 ```

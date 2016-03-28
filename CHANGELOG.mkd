@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- Adds `xtermcolor` command
+
 ## 0.1.0
 - Now uses a `color.Palette` and its `.Index` method
 - Support for convering hex strings (e.g. #CC66FF)
