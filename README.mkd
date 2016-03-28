@@ -45,5 +45,24 @@ func main() {
 15
 ```
 
+## xtermcolor command
 
+There's also an `xtermcolor` command you can install by running:
 
+```
+▶ go get github.com/tomnomnom/xtermcolor/cmd/xtermcolor
+```
+
+The command returns the color code for a 24 bit hex number:
+
+```
+▶ xtermcolor cc66ff
+171
+```
+
+...or for seperate 8 bit red, green and blue components:
+
+```
+▶ xtermcolor 210 128 0
+172
+```
