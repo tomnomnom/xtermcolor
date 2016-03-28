@@ -1,4 +1,4 @@
-// Package xtermcolor provides conversion from 24 bit colors in hex or RGB to
+// Package xtermcolor provides conversion from anything implementing color.Color to
 // the closest 8 bit xterm/shell color code.
 package xtermcolor
 
