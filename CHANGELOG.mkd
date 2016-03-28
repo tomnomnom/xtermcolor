@@ -1,12 +1,10 @@
 # Changelog
 
 ## 0.1.0
-### Added
-- Now uses a `color.Palette` and it's `.Index` method
+- Now uses a `color.Palette` and its `.Index` method
 - Support for convering hex strings (e.g. #CC66FF)
 
 ## 0.0.0
-### Added
 - Conversion using map lookup
 - Conversion from discrete RGB integers
 - Conversion from single integer
