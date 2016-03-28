@@ -1,17 +1,15 @@
-// Package xtermcolor provides conversion from anything implementing color.Color to
-// the closest 8 bit xterm/shell color code.
+// Package xtermcolor provides a palette for xterm colors, and conversion to that palette from anything implementing color.Color
 package xtermcolor
 
 import (
+	"fmt"
 	"image/color"
-	"math"
+	"strconv"
 )
 
-// Xterm color codes vs. RGBA; taken from https://gist.github.com/jasonm23/2868981
-// There are duplicates in the list, the first best match will be used.
-// This is an array and not a map because order is important for repeatability and
-// map ordering is not consistent.
-var colors = []color.RGBA{
+// Colors lists Xterm color codes vs. RGBA; values taken from https://gist.github.com/jasonm23/2868981
+// color.Palette is really []color.Color and provides .Convert() and .Index()
+var Colors = color.Palette{
 	// Basic block
 	0:  color.RGBA{0x00, 0x00, 0x00, 0xff},
 	1:  color.RGBA{0x80, 0x00, 0x00, 0xff},
@@ -284,43 +282,26 @@ func intToRGBA(c uint32) color.RGBA {
 	return color.RGBA{r, g, b, a}
 }
 
-// getDistance returns the distance between two colors ignoring the alpha channel
-func getDistance(a, b color.RGBA) uint32 {
-	dr := int(a.R - b.R)
-	dg := int(a.G - b.G)
-	db := int(a.B - b.B)
-
-	// Total distance (pythag)
-	d := dr*dr + dg*dg + db*db
-
-	return uint32(d)
-}
-
 // FromColor finds the closest xterm colour to a given color.Color
-// Where there are multiple colors with equal distance, the first one found will be returned.
 func FromColor(target color.Color) uint8 {
 
-	r, g, b, a := target.RGBA()
-	rgba := color.RGBA{uint8(r >> 8), uint8(g >> 8), uint8(b >> 8), uint8(a >> 8)}
-
-	// Max possible distance between target and match
-	distance := uint32(math.MaxUint32)
-	var match uint8
-
-	for xtermCode, candidate := range colors {
-
-		if cd := getDistance(candidate, rgba); cd < distance {
-			// Found a candidate closer to the target
-			match = uint8(xtermCode)
-			distance = cd
-		}
-	}
-
-	return match
+	return uint8(Colors.Index(target))
 }
 
 // FromInt finds the closest xterm color to a given 32 bit RGBA color (e.g. 0xff00ff00).
-// Where there are multiple colors with equal distance, the first one found will be returned.
 func FromInt(target uint32) uint8 {
 	return FromColor(intToRGBA(target))
+}
+
+// FromHexStr finds the closest xterm color to a given 24 bit hex string, e.g. "#CC66FF" or "FEFEFE"
+// It's mostly useful if you're used to specifying colours as hex in CSS etc
+func FromHexStr(str string) (uint8, error) {
+	if str[0] == '#' {
+		str = str[1:]
+	}
+	v, err := strconv.ParseUint(str, 16, 24)
+	if err != nil {
+		return 0, fmt.Errorf("Failed to parse string [] as hex; try something like #CC66FF")
+	}
+	return FromInt(uint32((v << 8) + 0xFF)), nil
 }

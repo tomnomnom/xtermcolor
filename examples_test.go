@@ -18,5 +18,16 @@ func ExampleFromInt() {
 	fmt.Println(xtermcolor.FromInt(0xCC66FFFF))
 
 	// Output:
-	// 177
+	// 171
+}
+
+func ExampleFromHexStr() {
+	code, err := xtermcolor.FromHexStr("#CC66FF")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(code)
+
+	// Output:
+	// 171
 }

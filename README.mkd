@@ -2,6 +2,9 @@
 
 Find the closest xterm color to anything implementing [color.Color](https://golang.org/pkg/image/color/#Color).
 
+Provides a [color.Palette](https://golang.org/pkg/image/color/#Palette) as `xtermcolor.Colors` so you can use `.Convert` and `.Index`,
+but also provides convenience functions to get the index as a `uint8` from a `color.Color`, a 32 bit integer, or a 24 bit hex string.
+
 [![Build Status](https://travis-ci.org/TomNomNom/xtermcolor.svg?branch=master)](https://travis-ci.org/TomNomNom/xtermcolor)
 
 
@@ -20,15 +23,26 @@ import (
 )
 
 func main() {
+	fmt.Println(xtermcolor.Colors.Convert(color.RGBA{128, 64, 32, 255}))
+
 	fmt.Println(xtermcolor.FromColor(color.RGBA{120, 210, 120, 255}))
+
 	fmt.Println(xtermcolor.FromInt(0xCC66FFFF))
+
+	code, err := xtermcolor.FromHexStr("#FEFEFE")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(code)
 }
 ```
 
 ```
 ▶ go run examples/basic.go 
-177
+{135 95 0 255}
 114
+171
+15
 ```
 
 
