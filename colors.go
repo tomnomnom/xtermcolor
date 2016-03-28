@@ -296,12 +296,16 @@ func FromInt(target uint32) uint8 {
 // FromHexStr finds the closest xterm color to a given 24 bit hex string, e.g. "#CC66FF" or "FEFEFE"
 // It's mostly useful if you're used to specifying colours as hex in CSS etc
 func FromHexStr(str string) (uint8, error) {
+	if len(str) == 0 {
+		return 0, fmt.Errorf("Empty hex string provided")
+	}
+
 	if str[0] == '#' {
 		str = str[1:]
 	}
 	v, err := strconv.ParseUint(str, 16, 24)
 	if err != nil {
-		return 0, fmt.Errorf("Failed to parse string [] as hex; try something like #CC66FF")
+		return 0, fmt.Errorf("Failed to parse string as hex; try something like #CC66FF")
 	}
 	return FromInt(uint32((v << 8) + 0xFF)), nil
 }

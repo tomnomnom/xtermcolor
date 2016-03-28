@@ -1,1 +1,3 @@
+*.swp
 examples/examples
+cmd/xtermcolor/xtermcolor
