@@ -296,7 +296,7 @@ func getDistance(a, b color.RGBA) int {
 	return d
 }
 
-// FromColor finds the closest xterm colour to given R, G and B components (e.g. 255, 0, 255).
+// FromColor finds the closest xterm colour to a given color.Color
 // Where there are multiple colors with equal distance, the first one found will be returned.
 func FromColor(target color.Color) uint8 {
 
@@ -319,7 +319,7 @@ func FromColor(target color.Color) uint8 {
 	return match
 }
 
-// FromInt finds the closest xterm color to a given 24 bit color (e.g. 0xff00ff).
+// FromInt finds the closest xterm color to a given 32 bit RGBA color (e.g. 0xff00ff00).
 // Where there are multiple colors with equal distance, the first one found will be returned.
 func FromInt(target uint32) uint8 {
 	return FromColor(intToRGBA(target))
