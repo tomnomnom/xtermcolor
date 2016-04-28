@@ -54,20 +54,23 @@ func TestInts(t *testing.T) {
 type hexStrTest struct {
 	in  string
 	exp uint8
+	err error
 }
 
 var hexStrTests = []hexStrTest{
-	{"#000000", 0},
-	{"FF0000", 9},
-	{"#CC66FF", 171},
+	{"#000000", 0, nil},
+	{"FF0000", 9, nil},
+	{"#CC66FF", 171, nil},
+	{"", 0, ErrorEmptyHexStr},
+	{"#nothex", 0, ErrorHexParse},
 }
 
 func TestHexStr(t *testing.T) {
 	for _, test := range hexStrTests {
 		act, err := FromHexStr(test.in)
 
-		if err != nil {
-			t.Errorf("FromHexStr should not have thrown an error but returned %s", err)
+		if err != test.err {
+			t.Errorf("FromHexStr error value should have been %s but was %s", test.err, err)
 		}
 		if act != test.exp {
 			t.Errorf("FromHexStr(%s) should be %d (%v); got %d (%v)", test.in, test.exp, Colors[test.exp], act, Colors[act])

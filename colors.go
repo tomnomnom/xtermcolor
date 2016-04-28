@@ -2,7 +2,7 @@
 package xtermcolor
 
 import (
-	"fmt"
+	"errors"
 	"image/color"
 	"strconv"
 )
@@ -273,6 +273,11 @@ var Colors = color.Palette{
 	244: color.RGBA{0x80, 0x80, 0x80, 0xff},
 }
 
+var (
+	ErrorEmptyHexStr = errors.New("Empty hex string provided")
+	ErrorHexParse    = errors.New("Failed to parse string as hex; try something like #CC66FF")
+)
+
 // Convert a 32 bit color to a color.RGBA
 func intToRGBA(c uint32) color.RGBA {
 	r := uint8((c >> 24) & 0xff)
@@ -297,7 +302,7 @@ func FromInt(target uint32) uint8 {
 // It's mostly useful if you're used to specifying colours as hex in CSS etc
 func FromHexStr(str string) (uint8, error) {
 	if len(str) == 0 {
-		return 0, fmt.Errorf("Empty hex string provided")
+		return 0, ErrorEmptyHexStr
 	}
 
 	if str[0] == '#' {
@@ -305,7 +310,7 @@ func FromHexStr(str string) (uint8, error) {
 	}
 	v, err := strconv.ParseUint(str, 16, 24)
 	if err != nil {
-		return 0, fmt.Errorf("Failed to parse string as hex; try something like #CC66FF")
+		return 0, ErrorHexParse
 	}
 	return FromInt(uint32((v << 8) + 0xFF)), nil
 }
