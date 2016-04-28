@@ -274,8 +274,11 @@ var Colors = color.Palette{
 }
 
 var (
+	// ErrorEmptyHexStr is returned by FromHexStr when an empty hex string is provided
 	ErrorEmptyHexStr = errors.New("Empty hex string provided")
-	ErrorHexParse    = errors.New("Failed to parse string as hex; try something like #CC66FF")
+
+	// ErrorHexParse is returned by FromHexStr when an invalid hex string is provided
+	ErrorHexParse = errors.New("Failed to parse string as hex; try something like #CC66FF")
 )
 
 // Convert a 32 bit color to a color.RGBA
